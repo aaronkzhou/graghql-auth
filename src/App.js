@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Button, Container } from 'reactstrap';
+import React, { Component } from "react";
+import { Button, Container } from "reactstrap";
 
-import PostViewer from './PostViewer';
-import PostEditor from './PostEditor';
-import withAuth from './withAuth';
+import PostViewer from "./PostViewer";
+import PostEditor from "./PostEditor";
+import withAuth from "./withAuth";
 
 class App extends Component {
   state = {
-    editing: null,
+    editing: null
   };
 
   render() {
@@ -28,26 +28,18 @@ class App extends Component {
             >
               New Post
             </Button>
-            <Button
-              className="m-2"
-              color="secondary"
-              onClick={() => logout()}
-            >
+            <Button className="m-2" color="secondary" onClick={() => logout()}>
               Sign Out (signed in as {user.name})
             </Button>
           </div>
         ) : (
-          <Button
-            className="my-2"
-            color="primary"
-            onClick={() => login()}
-          >
+          <Button className="my-2" color="primary" onClick={() => login()}>
             Sign In
           </Button>
         )}
         <PostViewer
-          canEdit={(post) => user && user.sub === post.author.id}
-          onEdit={(post) => this.setState({ editing: post })}
+          canEdit={post => user && user.sub === post.author.id}
+          onEdit={post => this.setState({ editing: post })}
         />
         {editing && (
           <PostEditor
